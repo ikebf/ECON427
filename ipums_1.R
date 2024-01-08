@@ -57,16 +57,26 @@ load('df_1.RData')
 
 # Creating variables
 df = df_1 %>% mutate(college = ifelse(EDUC %in% c(110, 111), 1, 0)) %>%
-      mutate(lwage = log(INCWAGE)) %>%
-      mutate(college = as.factor(college))
+      mutate(lwage = log(INCWAGE)) 
 
-## Plotting the data
+# Weighted mean of log wages over time
 wage_table = df %>% group_by(YEAR, college) %>%
               summarize(avg_wage = weighted.mean(lwage, ASECWT, na.rm = TRUE))
 
-wage_table %>% ggplot(aes(x = YEAR, y = avg_wage, group = college, color = college)) +
+## Plotting the data 
+wage_table %>% mutate(college = as.factor(college)) %>%
+  ggplot(aes(x = YEAR, y = avg_wage, group = college, color = college)) +
   geom_line() +
   ggtitle('Log wages over time') +
   ylab('log(wage)') +
   xlab('year')
   
+## Calculating and plotting wage differentials 
+diff_table = wage_table %>% mutate(diff = avg_wage - lag(avg_wage)) %>%
+              filter(college == 1)
+
+diff_table %>% ggplot(aes(x = YEAR, y = diff))  +
+  geom_line() +
+  ggtitle('Log wage differentials over time') +
+  ylab('log(wage) differential') +
+  xlab('year')
