@@ -73,6 +73,6 @@ df %>% filter(SEX == 1) %>%
   mutate(chil5 = as.factor(chil5)) %>%
   ggplot(aes(x = YEAR, y = lfpr, group = chil5, color = chil5)) +
   geom_line() +
-  ggtitle('LFPR over time for women') +
+  ggtitle('LFPR over time for men') +
   ylab('LFPR') +
   xlab('year')
