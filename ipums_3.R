@@ -9,6 +9,8 @@ library(ipumsr)
 library(dplyr)
 library(purrr)
 library(ggplot2)
+library(data.table)
+library(tidyr)
 
 # Getting list of variables
 namesdf = get_sample_info(collection = 'cps') %>%
