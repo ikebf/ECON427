@@ -76,3 +76,12 @@ df %>% group_by(YEAR) %>%
   geom_line((aes(y = wage_first_gen, color = "First gen women"))) +
   geom_line((aes(y = wage_sec_gen, color = "Second gen women"))) +
   xlab('Year') + ylab('Log weekly earnings')
+
+# Q4 (females) Fill this in 
+df %>% group_by(YEAR) %>%
+  summarize(wage_native = weighted.mean(lwearn, ASECWT * generation_Native_parents)) %>%
+  ggplot(aes(YEAR)) +
+    geom_line((aes(y = wage_native, color = "Natives w/ native parents"))) +
+    xlab('Year') + ylab('Log weekly earnings')
+
+  
