@@ -43,10 +43,12 @@ save(df_1, file = 'df_1.RData')
 # Load data
 load('df_1.RData')
 
+#### Look up variable codes here to decide on the appropriate values of each codebook value below
+#### for WKSWORK2: https://usa.ipums.org/usa-action/variables/WKSWORK2#description_section
 df = df_1 %>% mutate(race = case_when(RACE == 100 ~ 0, RACE == 200 ~ 1)) %>%
   mutate(more_than_hs = ifelse(EDUC >= 80, 1, 0)) %>%
-  mutate(wkswork = case_when(WKSWORK2 == 1 ~ 7, WKSWORK2 == 2 ~ 20, WKSWORK2 == 3 ~ 33, 
-                             WKSWORK2 == 4 ~ 43.5, WKSWORK2 == 5 ~ 48.5, WKSWORK2 == 6 ~ 52)) %>%
+  mutate(wkswork = case_when(WKSWORK2 == 1 ~ ..., WKSWORK2 == 2 ~ ..., WKSWORK2 == 3 ~ ..., 
+                             WKSWORK2 == 4 ~ ..., WKSWORK2 == 5 ~ ..., WKSWORK2 == 6 ~ ...)) %>%
   mutate(lwkearn = log(INCWAGE / wkswork)) %>%
   mutate(sex = case_when(SEX == 1 ~ 'Male', SEX == 2 ~ 'FEMALE')) %>%
   mutate(SEX = 2 - SEX) 
