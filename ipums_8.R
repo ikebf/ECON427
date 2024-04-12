@@ -45,7 +45,7 @@ load('df_1.RData')
 
 df = df_1 %>% mutate(generation = case_when(NATIVITY ==5 ~ 'Immigrant', NATIVITY %in% c(2,3,4) ~ 'Immigrant_parent', 
                                             NATIVITY == 1 ~ 'Native_parents')) %>%
-  mutate(lwearn = log(INCWAGE) / WKSWORK1) %>%
+  mutate(lwearn = log(INCWAGE / WKSWORK1)) %>%
   dummy_cols(select_columns = "generation")
 
 # Q1 
