@@ -62,8 +62,8 @@ scatter_table = df %>% group_by(DEGFIELD) %>%
 scatter_table %>% ggplot(aes(x = wages_men, y = frac_women)) + 
   geom_point() +
   ggtitle('Female participation vs average wage of men') +
-  ylab('Average wage of men') +
-  xlab('Fraction of major that are women') 
+  xlab('Average wage of men') +
+  ylab('Fraction of major that are women') 
 
 # Breaking down economics/non-econ
 # Note: econ saved as 99, non-econ social sciences saved as 98

@@ -62,8 +62,8 @@ df = df_1 %>% mutate(unemployed = ifelse(EMPSTAT %in% c(21, 22), 1, 0)) %>%
 
 # Q1
 df %>% group_by(age_grp) %>%
-  summarize(un_2007 = weighted.mean(unemployed * WTFINL * ifelse(YEAR == 2007, 1, 0)),
-            un_2010 = weighted.mean(unemployed * WTFINL * ifelse(YEAR == 2010, 1, 0))) %>%
+  summarize(un_2007 = weighted.mean(unemployed, WTFINL * ifelse(YEAR == 2007, 1, 0)),
+            un_2010 = weighted.mean(unemployed, WTFINL * ifelse(YEAR == 2010, 1, 0))) %>%
   ggplot(aes(x = un_2007, y = un_2010)) + geom_point() + xlab('2007 unemployment') +
   ylab('2010 unemployment') + ggtitle('Unemployment by age group') +
   geom_text(aes(label = age_grp), hjust = -0.2) +
@@ -71,8 +71,8 @@ df %>% group_by(age_grp) %>%
 
 # Q2 
 df %>% group_by(age_grp) %>%
-  summarize(un_2019 = weighted.mean(unemployed * WTFINL * ifelse(YEAR == 2019, 1, 0)),
-            un_2020 = weighted.mean(unemployed * WTFINL * ifelse(YEAR == 2020, 1, 0))) %>%
+  summarize(un_2019 = weighted.mean(unemployed * WTFINL,  ifelse(YEAR == 2019, 1, 0)),
+            un_2020 = weighted.mean(unemployed * WTFINL, ifelse(YEAR == 2020, 1, 0))) %>%
   ggplot(aes(x = un_2019, y = un_2020)) + geom_point() + xlab('2019 unemployment') +
   ylab('2020 unemployment') + ggtitle('Unemployment by age group') +
   geom_text(aes(label = age_grp), hjust = -0.2) +
@@ -80,8 +80,8 @@ df %>% group_by(age_grp) %>%
 
 # Q3
 df %>% group_by(educ_grp) %>%
-  summarize(un_2007 = weighted.mean(unemployed * WTFINL * ifelse(YEAR == 2007, 1, 0)),
-            un_2010 = weighted.mean(unemployed * WTFINL * ifelse(YEAR == 2010, 1, 0))) %>%
+  summarize(un_2007 = weighted.mean(unemployed, WTFINL * ifelse(YEAR == 2007, 1, 0)),
+            un_2010 = weighted.mean(unemployed, WTFINL * ifelse(YEAR == 2010, 1, 0))) %>%
   ggplot(aes(x = un_2007, y = un_2010)) + geom_point() + xlab('2007 unemployment') +
   ylab('2010 unemployment') + ggtitle('Unemployment by age group') +
   geom_text(aes(label = educ_grp), hjust = -0.2) +
@@ -89,8 +89,8 @@ df %>% group_by(educ_grp) %>%
 
 # Q4
 df %>% group_by(educ_grp) %>%
-  summarize(un_2019 = weighted.mean(unemployed * WTFINL * ifelse(YEAR == 2019, 1, 0)),
-            un_2020 = weighted.mean(unemployed * WTFINL * ifelse(YEAR == 2020, 1, 0))) %>%
+  summarize(un_2019 = weighted.mean(unemployed, WTFINL * ifelse(YEAR == 2019, 1, 0)),
+            un_2020 = weighted.mean(unemployed, WTFINL * ifelse(YEAR == 2020, 1, 0))) %>%
   ggplot(aes(x = un_2019, y = un_2020)) + geom_point() + xlab('2019 unemployment') +
   ylab('2020 unemployment') + ggtitle('Unemployment by age group') +
   geom_text(aes(label = educ_grp), hjust = -0.2) +
