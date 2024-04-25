@@ -78,6 +78,6 @@ df %>% group_by(YEAR) %>%
 df %>% group_by(YEAR, sex_cat) %>%
   summarize(union_gap = lm(learnwk ~ educ + exper + I(exper^2) + union)$coefficients['union']) %>%
   ggplot(aes(x = YEAR, y = union_gap, group = sex_cat, color = sex_cat)) +
-  geom_line() %>%
+  geom_line() +
   xlab('Year') + ylab('Returns to union membership') +
   ggtitle('Returns to union membership by sex')
